@@ -1,4 +1,52 @@
 @import url('https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400;1,700&display=swap');
 
 .radix-themes {
-	--default-font-family:  'Atkinson Hyperlegible', serif; }
+	--default-font-family:  'Atkinson Hyperlegible', serif;
+}
+
+:root {
+	--learning-card-min-width: 840px;
+	--learning-card-block-height: 180px
+}
+
+body,
+html {
+	min-width: 100%;
+	margin: 0;
+}
+
+html,
+body,
+#root {
+  min-height: 100%;
+  scroll-behavior: smooth;
+}
+
+/* COMPONENTS */
+
+.colour-picker{
+	background-color: aqua;
+}
+
+/* BLOCKS */
+
+.block {
+	width: var(--learning-card-min-width);
+	min-height: var(--learning-card-block-height);
+	background-color: transparent;
+	
+}
+
+#block-callout.rt-TextAreaInput{
+	font-size: var(--font-size-4);
+	line-height: var(--line-height-5);
+	letter-spacing: var(--letter-spacing-4);
+}
+
+#block-text.rt-TextAreaInput{ 
+	font-size: var(--font-size-4);
+	line-height: var(--line-height-5);
+	letter-spacing: var(--letter-spacing-4);	
+}
+
+

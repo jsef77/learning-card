@@ -10,26 +10,21 @@ function LearningCard({ editMode }: { editMode: boolean }) {
   return (
     <Flex
       direction={"column"}
-      width={"100%"}
       align={"center"}
-      justify={"center"}
-      style={{ backgroundColor: "var(--gray-2)" }}
+      width={"50%"}
+      style={{
+        backgroundColor: "background",
+        minWidth: "var(--learning-card-min-width)",
+        marginTop: "8em",
+      }}
     >
-      <Flex
-        direction={"column"}
-        align={"center"}
-        width="60%"
-        minWidth={"800px"}
-        style={{ backgroundColor: "background" }}
-      >
-        <LearningCardHeader />
-        <DraggableBlocks
-          editMode={editMode}
-          blocks={blocks}
-          setBlocks={setBlocks}
-        />
-        <AddBlockButton blocks={blocks} setBlocks={setBlocks} />
-      </Flex>
+      <LearningCardHeader />
+      <DraggableBlocks
+        editMode={editMode}
+        blocks={blocks}
+        setBlocks={setBlocks}
+      />
+      <AddBlockButton blocks={blocks} setBlocks={setBlocks} />
     </Flex>
   );
 }

@@ -15,7 +15,7 @@ import {
   sortableKeyboardCoordinates,
 } from "@dnd-kit/sortable";
 
-import { Flex } from "@radix-ui/themes";
+import { Box } from "@radix-ui/themes";
 import { SortableBlock } from "./SortableBlock";
 import { restrictToVerticalAxis } from "@dnd-kit/modifiers";
 
@@ -34,32 +34,27 @@ function DraggableBlocks({ blocks, setBlocks, editMode }: Props) {
   );
 
   return (
-    <Flex width={"100%"} justify={"center"}>
-      <DndContext
-        sensors={sensors}
-        collisionDetection={closestCenter}
-        onDragEnd={handleDragEnd}
-        modifiers={[restrictToVerticalAxis]}
-      >
-        <Flex direction={"column"} gap={"1"}>
-          <SortableContext
-            items={blocks}
-            strategy={verticalListSortingStrategy}
-          >
-            {blocks.map((block) => (
-              <SortableBlock
-                editMode={editMode}
-                blocks={blocks}
-                setBlocks={setBlocks}
-                key={block.id}
-                id={block.id}
-                type={block.type}
-              />
-            ))}
-          </SortableContext>
-        </Flex>
-      </DndContext>
-    </Flex>
+    <DndContext
+      sensors={sensors}
+      collisionDetection={closestCenter}
+      onDragEnd={handleDragEnd}
+      modifiers={[restrictToVerticalAxis]}
+    >
+      <Box>
+        <SortableContext items={blocks} strategy={verticalListSortingStrategy}>
+          {blocks.map((block) => (
+            <SortableBlock
+              editMode={editMode}
+              blocks={blocks}
+              setBlocks={setBlocks}
+              key={block.id}
+              id={block.id}
+              type={block.type}
+            />
+          ))}
+        </SortableContext>
+      </Box>
+    </DndContext>
   );
 
   function handleDragEnd(event: DragEndEvent) {

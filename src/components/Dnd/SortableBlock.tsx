@@ -42,29 +42,53 @@ export function SortableBlock({
   }
 
   return (
-    <Flex width={"100%"} gap={"1"} justify={"center"}>
-      {editMode ? (
-        <Box ref={setNodeRef} style={style} {...attributes} {...listeners}>
-          <IconButton variant="outline" style={{ cursor: "grab" }}>
-            <LineHeightIcon />
-          </IconButton>
-        </Box>
-      ) : null}
-      <Box ref={setNodeRef} style={style} {...attributes}>
-        <BlockContainer type={type} />
-      </Box>
-      <Box ref={setNodeRef} style={style} {...attributes}>
-        <IconButton
-          variant="ghost"
-          color="red"
-          style={{ cursor: "pointer" }}
-          onClick={() => {
-            handleDelete(id);
-          }}
+    <>
+      <Flex width={"100%"} gap={"1"} position={"relative"}>
+        {editMode ? (
+          <Box // Drag box
+            ref={setNodeRef}
+            style={{ ...style, position: "absolute", left: "-35px" }}
+            {...attributes}
+            {...listeners}
+          >
+            <IconButton variant="outline" style={{ cursor: "grab" }}>
+              <LineHeightIcon />
+            </IconButton>
+          </Box>
+        ) : null}
+
+        <Box // Content box
+          ref={setNodeRef}
+          style={style}
+          {...attributes}
         >
-          <Cross1Icon />
-        </IconButton>
-      </Box>
-    </Flex>
+          <BlockContainer type={type} editMode={editMode} />
+        </Box>
+
+        <Box // Delete box
+          ref={setNodeRef}
+          style={{
+            ...style,
+            position: "absolute",
+            top: "5px",
+            right: "-25px",
+          }}
+          {...attributes}
+        >
+          {editMode ? (
+            <IconButton
+              variant="ghost"
+              color="red"
+              style={{ cursor: "pointer" }}
+              onClick={() => {
+                handleDelete(id);
+              }}
+            >
+              <Cross1Icon />
+            </IconButton>
+          ) : null}
+        </Box>
+      </Flex>
+    </>
   );
 }

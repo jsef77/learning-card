@@ -26,18 +26,23 @@ function AddBlockButton({ blocks, setBlocks }: Props) {
         </Popover.Trigger>
         <Popover.Content align="center">
           <Popover.Close>
-            <Flex direction="row" align="center" gap={"4"}>
-              <IconButton
+            <Flex // Flex container for options
+              direction="row"
+              align="center"
+              gap={"4"}
+            >
+              <IconButton // ----------Text block
                 variant="ghost"
                 style={{ cursor: "pointer" }}
                 onClick={() => handleOnClick(0)}
               >
                 <LetterCaseCapitalizeIcon />
               </IconButton>
-              <IconButton
+
+              <IconButton // -----------Callout block
                 variant="ghost"
                 style={{ cursor: "pointer" }}
-                onClick={() => handleOnClick(0)}
+                onClick={() => handleOnClick(1)}
               >
                 <LetterCaseCapitalizeIcon />
               </IconButton>
