@@ -44,7 +44,7 @@ function AddBlockButton({ blocks, setBlocks }: Props) {
               </IconButton>
 
               <IconButton // -----------Callout block
-                variant="solid"
+                variant="ghost"
                 style={{ cursor: "pointer" }}
                 onClick={() => handleOnClick(1)}
               >
