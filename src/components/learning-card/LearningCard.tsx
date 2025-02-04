@@ -6,7 +6,6 @@ import AddBlockButton from "./AddBlockButton";
 
 function LearningCard({ editMode }: { editMode: boolean }) {
   const [blocks, setBlocks] = useState([{ id: 0, type: 0 }]);
-  // const [blockIDTicker, setBlockIDTicker] = useState(1);
   return (
     <Flex
       direction={"column"}

@@ -1,24 +1,23 @@
-import React from "react";
-import { TwitterPicker } from "react-color";
+import { Dispatch, useState } from "react";
+import Circle from "@uiw/react-color-circle";
 
-class CalloutColourPicker extends React.Component {
-  render() {
-    return (
-      <TwitterPicker
-        className="colour-picker"
-        triangle="hide"
-        colors={[
-          "var(--tomato-6)",
-          "var(--ruby-6)",
-          "var(--crimson-6)",
-          "var(--purple-6)",
-          "var(--iris-6)",
-          "var(--teal-6)",
-          "var(--grass-6)",
-        ]}
-      />
-    );
-  }
+interface Props {
+  setChosenColour: Dispatch<React.SetStateAction<string>>;
 }
 
-export default CalloutColourPicker;
+export default function CalloutColourPicker({ setChosenColour }: Props) {
+  const [hex, setHex] = useState("var(--ruby-4)");
+  const colors = ["#4E1325", "#451D47", "#1D2E62", "#084843"];
+  return (
+    <>
+      <Circle
+        colors={colors}
+        color={hex}
+        onChange={(color) => {
+          setHex(color.hex);
+          setChosenColour(color.hex);
+        }}
+      />
+    </>
+  );
+}

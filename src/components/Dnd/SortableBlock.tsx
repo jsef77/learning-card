@@ -38,7 +38,6 @@ export function SortableBlock({
 
   function handleDelete(blockId: number) {
     setBlocks(blocks.filter((block) => block.id !== blockId));
-    console.log(blocks);
   }
 
   return (

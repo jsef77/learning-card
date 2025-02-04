@@ -6,7 +6,7 @@ import {
   useSensor,
   useSensors,
   DragEndEvent,
-  closestCenter,
+  closestCorners,
 } from "@dnd-kit/core";
 import {
   arrayMove,
@@ -36,7 +36,7 @@ function DraggableBlocks({ blocks, setBlocks, editMode }: Props) {
   return (
     <DndContext
       sensors={sensors}
-      collisionDetection={closestCenter}
+      collisionDetection={closestCorners}
       onDragEnd={handleDragEnd}
       modifiers={[restrictToVerticalAxis]}
     >

@@ -1,8 +1,7 @@
 import LearningCard from "./components/learning-card/LearningCard";
 import NavBar from "./components/nav/NavBar";
 import { useState } from "react";
-import { Flex } from "@radix-ui/themes";
-import { Theme } from "@radix-ui/themes";
+import { Flex, ContextMenu, Theme } from "@radix-ui/themes";
 
 export type ThemeAppearance = "dark" | "light" | "inherit";
 export type AccentColors = "teal" | "indigo" | "ruby";
@@ -17,9 +16,8 @@ export default function MyApp() {
       id="themeComponent"
       appearance={theme}
       accentColor={accentColor}
-      grayColor="sage"
       panelBackground="translucent"
-      style={{ backgroundColor: "var(--gray-3)" }}
+      style={{ background: "var(--gray-3)" }}
     >
       <div // Navbar div
         style={{
@@ -38,14 +36,23 @@ export default function MyApp() {
           setAccentColor={setAccentColor}
         />
       </div>
-      <Flex // Learning card container
-        direction={"row"}
-        justify={"center"}
-        width={"100%"}
-        minHeight={"110vh"}
-      >
-        <LearningCard editMode={editMode} />
-      </Flex>
+      <ContextMenu.Root modal={false}>
+        <ContextMenu.Trigger>
+          <Flex // Learning card container
+            direction={"row"}
+            justify={"center"}
+            width={"100%"}
+            minHeight={"110vh"}
+          >
+            <LearningCard editMode={editMode} />
+          </Flex>
+        </ContextMenu.Trigger>
+        <ContextMenu.Content size="1">
+          <ContextMenu.Item onClick={() => setEditMode(!editMode)}>
+            Edit mode
+          </ContextMenu.Item>
+        </ContextMenu.Content>
+      </ContextMenu.Root>
     </Theme>
   );
 }

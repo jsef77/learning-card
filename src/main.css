@@ -6,7 +6,8 @@
 
 :root {
 	--learning-card-min-width: 840px;
-	--learning-card-block-height: 180px
+	--learning-card-block-height: var(--line-height-5);
+	--background-graydient: linear-gradient(90deg, rgba(2,0,36,1) 0%, rgba(0,212,255,1) 100%);
 }
 
 body,
@@ -21,19 +22,14 @@ body,
   min-height: 100%;
   scroll-behavior: smooth;
 }
-
 /* COMPONENTS */
-
-.colour-picker{
-	background-color: aqua;
-}
 
 /* BLOCKS */
 
 .block {
 	width: var(--learning-card-min-width);
-	min-height: var(--learning-card-block-height);
 	background-color: transparent;
+	min-height: var(--learning-card-block-height);
 	
 }
 
@@ -41,6 +37,7 @@ body,
 	font-size: var(--font-size-4);
 	line-height: var(--line-height-5);
 	letter-spacing: var(--letter-spacing-4);
+
 }
 
 #block-text.rt-TextAreaInput{ 
