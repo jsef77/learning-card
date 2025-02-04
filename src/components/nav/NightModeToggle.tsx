@@ -1,16 +1,24 @@
 import { IconButton } from "@radix-ui/themes";
 import { SunIcon, MoonIcon } from "@radix-ui/react-icons";
-import { ThemeAppearance } from "../../App";
-import { Dispatch } from "react";
 
-interface Props {
-  theme: string;
-  setTheme: Dispatch<React.SetStateAction<ThemeAppearance>>;
-}
+import { useAppSelector, useAppDispatch } from "../../app/hooks";
+import { dark, light } from "../../features/theme/themeSlice";
 
-function NightModeToggle({ theme, setTheme }: Props) {
-  const handleThemeChange = () =>
-    theme == "light" ? setTheme("dark") : setTheme("light");
+function NightModeToggle() {
+  const dispatch = useAppDispatch();
+
+  function handleThemeChange() {
+    switch (theme) {
+      case "dark":
+        dispatch(light());
+        break;
+
+      case "light":
+        dispatch(dark());
+    }
+  }
+
+  const theme = useAppSelector((state) => state.theme.mode);
 
   return (
     <IconButton

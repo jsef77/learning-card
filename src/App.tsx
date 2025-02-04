@@ -3,13 +3,15 @@ import NavBar from "./components/nav/NavBar";
 import { useState } from "react";
 import { Flex, ContextMenu, Theme, Card } from "@radix-ui/themes";
 
-export type ThemeAppearance = "dark" | "light" | "inherit";
+import { useAppSelector } from "./app/hooks";
+
 export type AccentColors = "teal" | "indigo" | "ruby";
 
 export default function MyApp() {
   const [editMode, setEditMode] = useState(true);
-  const [theme, setTheme] = useState<ThemeAppearance>("dark");
   const [accentColor, setAccentColor] = useState<AccentColors>("indigo");
+
+  const theme = useAppSelector((state) => state.theme.mode);
 
   return (
     <Theme
@@ -28,8 +30,6 @@ export default function MyApp() {
         <NavBar
           editMode={editMode}
           setEditMode={setEditMode}
-          theme={theme}
-          setTheme={setTheme}
           setAccentColor={setAccentColor}
         />
       </Card>

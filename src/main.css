@@ -5,8 +5,9 @@
 }
 
 :root {
-	--learning-card-min-width: 840px;
+	--learning-card-min-width: 860px;
 	--learning-card-block-height: var(--line-height-5);
+	--learning-card-block-width: 820px;
 	--background-graydient: linear-gradient(90deg, rgba(2,0,36,1) 0%, rgba(0,212,255,1) 100%);
 }
 
@@ -44,7 +45,7 @@ body,
 /* BLOCKS */
 
 .block {
-	width: var(--learning-card-min-width);
+	width: var(--learning-card-block-width);
 	background-color: transparent;
 	min-height: var(--learning-card-block-height);
 }

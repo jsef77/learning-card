@@ -2,24 +2,16 @@ import { Avatar, Flex } from "@radix-ui/themes";
 import SettingsDropdown from "./SettingsDropdown";
 import EditSwitch from "./EditSwitch";
 import { Dispatch } from "react";
-import { AccentColors, ThemeAppearance } from "../../App";
+import { AccentColors } from "../../App";
 import NightModeToggle from "./NightModeToggle";
 
 interface Props {
   editMode: boolean;
   setEditMode: (value: boolean) => void;
-  theme: string;
-  setTheme: Dispatch<React.SetStateAction<ThemeAppearance>>;
   setAccentColor: Dispatch<React.SetStateAction<AccentColors>>;
 }
 
-function NavBar({
-  editMode,
-  setEditMode,
-  theme,
-  setTheme,
-  setAccentColor,
-}: Props) {
+function NavBar({ editMode, setEditMode, setAccentColor }: Props) {
   return (
     <Flex
       justify={"between"}
@@ -34,7 +26,7 @@ function NavBar({
       <Flex justify={"end"} align={"center"} gap={"4"}>
         <EditSwitch editMode={editMode} setEditMode={setEditMode} />
         <SettingsDropdown setAccentColor={setAccentColor} />
-        <NightModeToggle theme={theme} setTheme={setTheme} />
+        <NightModeToggle />
       </Flex>
     </Flex>
   );

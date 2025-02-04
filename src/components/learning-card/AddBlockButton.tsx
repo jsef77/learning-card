@@ -1,4 +1,8 @@
-import { LetterCaseCapitalizeIcon, PlusIcon } from "@radix-ui/react-icons";
+import {
+  LetterCaseCapitalizeIcon,
+  PlusIcon,
+  QuoteIcon,
+} from "@radix-ui/react-icons";
 import { Flex, IconButton, Popover, Section } from "@radix-ui/themes";
 import { Dispatch, useState } from "react";
 
@@ -40,11 +44,11 @@ function AddBlockButton({ blocks, setBlocks }: Props) {
               </IconButton>
 
               <IconButton // -----------Callout block
-                variant="ghost"
+                variant="solid"
                 style={{ cursor: "pointer" }}
                 onClick={() => handleOnClick(1)}
               >
-                <LetterCaseCapitalizeIcon />
+                <QuoteIcon />
               </IconButton>
             </Flex>
           </Popover.Close>

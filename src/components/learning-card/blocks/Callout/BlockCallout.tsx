@@ -7,13 +7,21 @@ interface Props {
   editMode: boolean;
 }
 
+import colourmap from "./colourmap";
+
 function BlockCallout({ editMode }: Props) {
   const boxShadow = editMode
     ? { boxShadow: "var(--shadow-1)" }
     : { boxShadow: "none" };
 
-  const [chosenColour, setChosenColour] = useState("var(--accent-2)");
+  const [chosenColour, setChosenColour] = useState("var(--gray-4)");
+
   const textAreaRef = useRef<HTMLTextAreaElement>(null);
+  const themedColour = colourmap[chosenColour];
+
+  useEffect(() => {
+    console.log(chosenColour);
+  }, [chosenColour]);
 
   useEffect(() => {
     // init height to 1 line
@@ -48,7 +56,7 @@ function BlockCallout({ editMode }: Props) {
         className="block"
         style={{
           ...boxShadow,
-          backgroundColor: chosenColour,
+          backgroundColor: themedColour,
         }}
         placeholder="Enter text here..."
         onInput={(e) => {
