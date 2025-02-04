@@ -1,7 +1,7 @@
 import LearningCard from "./components/learning-card/LearningCard";
 import NavBar from "./components/nav/NavBar";
 import { useState } from "react";
-import { Flex, ContextMenu, Theme } from "@radix-ui/themes";
+import { Flex, ContextMenu, Theme, Card } from "@radix-ui/themes";
 
 export type ThemeAppearance = "dark" | "light" | "inherit";
 export type AccentColors = "teal" | "indigo" | "ruby";
@@ -17,16 +17,13 @@ export default function MyApp() {
       appearance={theme}
       accentColor={accentColor}
       panelBackground="translucent"
-      style={{ background: "var(--gray-3)" }}
+      style={{
+        background: "linear-gradient(var(--gray-3), var(--accent-3))",
+      }} // Could cause issues?
     >
-      <div // Navbar div
-        style={{
-          backgroundColor: "var(--accent-1)",
-          opacity: 0.9,
-          position: "fixed",
-          width: "100%",
-          top: 0,
-        }}
+      <Card // Navbar Card
+        id="nav-bar-panel"
+        className="nav-bar"
       >
         <NavBar
           editMode={editMode}
@@ -35,7 +32,7 @@ export default function MyApp() {
           setTheme={setTheme}
           setAccentColor={setAccentColor}
         />
-      </div>
+      </Card>
       <ContextMenu.Root modal={false}>
         <ContextMenu.Trigger>
           <Flex // Learning card container

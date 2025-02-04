@@ -24,26 +24,44 @@ body,
 }
 /* COMPONENTS */
 
+#nav-bar-panel {
+
+	background-color: var(--accent-surface);
+	--card-border-radius: 0;
+	--card-border-width: 1px;
+	--backdrop-filter-panel: blur(4px);
+
+
+	position: fixed;
+	z-index: 1;
+	width: 100%;
+	top: -1px; 
+	padding: 0;
+	margin: 0;
+
+}
+
+#nav-bar-panel:where
+
 /* BLOCKS */
 
 .block {
 	width: var(--learning-card-min-width);
 	background-color: transparent;
 	min-height: var(--learning-card-block-height);
-	
 }
 
-#block-callout.rt-TextAreaInput{
+#block-callout.rt-TextAreaInput {
 	font-size: var(--font-size-4);
 	line-height: var(--line-height-5);
 	letter-spacing: var(--letter-spacing-4);
-
 }
 
-#block-text.rt-TextAreaInput{ 
+#block-text.rt-TextAreaInput { 
 	font-size: var(--font-size-4);
 	line-height: var(--line-height-5);
-	letter-spacing: var(--letter-spacing-4);	
+	letter-spacing: var(--letter-spacing-4);
+	
 }
 
 

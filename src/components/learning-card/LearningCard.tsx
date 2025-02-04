@@ -12,7 +12,7 @@ function LearningCard({ editMode }: { editMode: boolean }) {
       align={"center"}
       width={"50%"}
       style={{
-        backgroundColor: "background",
+        backgroundColor: "var(--gray-1)",
         minWidth: "var(--learning-card-min-width)",
         marginTop: "8em",
       }}

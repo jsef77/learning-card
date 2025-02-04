@@ -21,14 +21,15 @@ function NavBar({
   setAccentColor,
 }: Props) {
   return (
-    <Flex justify={"between"} align={"center"} style={{ padding: "10px 80px" }}>
+    <Flex
+      justify={"between"}
+      align={"center"}
+      style={{
+        padding: "10px 80px",
+      }}
+    >
       <Flex justify={"start"} gap={"3"}>
-        <Avatar
-          size={"3"}
-          src="https://avatars.githubusercontent.com/u/26205643?v=4"
-          radius={"full"}
-          fallback={"J"}
-        />
+        <Avatar size={"3"} radius={"full"} fallback={"J"} />
       </Flex>
       <Flex justify={"end"} align={"center"} gap={"4"}>
         <EditSwitch editMode={editMode} setEditMode={setEditMode} />
