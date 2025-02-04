@@ -14,7 +14,7 @@ function BlockCallout({ editMode }: Props) {
     ? { boxShadow: "var(--shadow-1)" }
     : { boxShadow: "none" };
 
-  const [chosenColour, setChosenColour] = useState("var(--gray-4)");
+  const [chosenColour, setChosenColour] = useState("");
 
   const textAreaRef = useRef<HTMLTextAreaElement>(null);
   const themedColour = colourmap[chosenColour];

@@ -15,7 +15,7 @@ import {
   sortableKeyboardCoordinates,
 } from "@dnd-kit/sortable";
 
-import { Box } from "@radix-ui/themes";
+import { Flex } from "@radix-ui/themes";
 import { SortableBlock } from "./SortableBlock";
 import { restrictToVerticalAxis } from "@dnd-kit/modifiers";
 
@@ -40,7 +40,7 @@ function DraggableBlocks({ blocks, setBlocks, editMode }: Props) {
       onDragEnd={handleDragEnd}
       modifiers={[restrictToVerticalAxis]}
     >
-      <Box>
+      <Flex direction={"column"} gap={"2"}>
         <SortableContext items={blocks} strategy={verticalListSortingStrategy}>
           {blocks.map((block) => (
             <SortableBlock
@@ -53,7 +53,7 @@ function DraggableBlocks({ blocks, setBlocks, editMode }: Props) {
             />
           ))}
         </SortableContext>
-      </Box>
+      </Flex>
     </DndContext>
   );
 
