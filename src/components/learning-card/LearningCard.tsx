@@ -14,7 +14,8 @@ function LearningCard({ editMode }: { editMode: boolean }) {
       style={{
         backgroundColor: "var(--gray-1)",
         minWidth: "var(--learning-card-min-width)",
-        marginTop: "8em",
+        marginTop: "6em",
+        paddingTop: "1em",
       }}
     >
       <LearningCardHeader />

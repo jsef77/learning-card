@@ -55,7 +55,7 @@ body,
 #block-text.rt-TextAreaInput { 
 	font-size: var(--font-size-4);
 	line-height: var(--line-height-5);
-	letter-spacing: var(--letter-spacing-4);
+	letter-spacing: var(--letter-spacing-1);
 	padding-left: 12px;
 	
 }
@@ -65,7 +65,7 @@ body,
 #block-callout.rt-TextAreaInput {
 	font-size: var(--font-size-4);
 	line-height: var(--line-height-5);
-	letter-spacing: var(--letter-spacing-4);
+	letter-spacing: var(--letter-spacing-1);
 	padding: 10px;
 }
 
