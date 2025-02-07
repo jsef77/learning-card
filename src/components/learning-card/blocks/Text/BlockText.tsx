@@ -1,38 +1,25 @@
-import { Flex, TextArea } from "@radix-ui/themes";
-import { useRef, useEffect } from "react";
+import ReactQuill from "react-quill-new";
+import "react-quill-new/dist/quill.bubble.css";
+import { useState } from "react";
 
 interface Props {
   editMode: boolean;
+  style?: React.CSSProperties;
+  id?: string;
 }
 
-function BlockText({ editMode }: Props) {
-  const textAreaRef = useRef<HTMLTextAreaElement>(null);
-
-  useEffect(() => {
-    // init height to 1 line
-    if (textAreaRef.current) {
-      textAreaRef.current.style.height = "0px";
-      textAreaRef.current.style.height = `${textAreaRef.current.scrollHeight}px`;
-    }
-  }, []);
+function BlockText({ editMode, style, id }: Props) {
+  const [value, setValue] = useState("");
 
   return (
-    <Flex width={"100%"}>
-      <TextArea
-        id="block-text"
-        ref={textAreaRef}
-        className="block"
-        style={
-          editMode ? { boxShadow: "var(--shadow-1)" } : { boxShadow: "none" }
-        }
-        placeholder="Enter text here..."
-        onInput={(e) => {
-          const target = e.target as HTMLTextAreaElement;
-          target.style.height = "0px";
-          target.style.height = target.scrollHeight + "px";
-        }}
-      ></TextArea>
-    </Flex>
+    <ReactQuill
+      className="block-text"
+      id={id}
+      theme="bubble"
+      value={value}
+      onChange={setValue}
+      style={{ ...style, boxShadow: editMode ? "var(--shadow-1)" : "none" }}
+    />
   );
 }
 

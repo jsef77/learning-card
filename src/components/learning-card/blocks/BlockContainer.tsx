@@ -1,5 +1,6 @@
 import BlockText from "./Text/BlockText";
 import BlockCallout from "./Callout/BlockCallout";
+import { Flex } from "@radix-ui/themes";
 
 interface Props {
   type: number;
@@ -9,9 +10,17 @@ interface Props {
 function BlockContainer({ type, editMode }: Props) {
   switch (type) {
     case 0:
-      return <BlockText editMode={editMode} />;
+      return (
+        <Flex width={"100%"} justify={"end"} align={"end"}>
+          <BlockText editMode={editMode} />
+        </Flex>
+      );
     case 1:
-      return <BlockCallout editMode={editMode} />;
+      return (
+        <Flex width={"100%"} justify={"end"} align={"end"}>
+          <BlockCallout editMode={editMode} />
+        </Flex>
+      );
   }
 }
 

@@ -1,5 +1,5 @@
-import { Box, Popover, Flex, TextArea, IconButton } from "@radix-ui/themes";
-import { useState, useRef, useEffect } from "react";
+import { Box, Popover, IconButton } from "@radix-ui/themes";
+import { useState } from "react";
 import CalloutColourPicker from "./CalloutColourPicker";
 import { BlendingModeIcon } from "@radix-ui/react-icons";
 
@@ -8,31 +8,19 @@ interface Props {
 }
 
 import colourmap from "./colourmap";
+import BlockText from "../Text/BlockText";
 
 function BlockCallout({ editMode }: Props) {
-  const boxShadow = editMode
-    ? { boxShadow: "var(--shadow-1)" }
-    : { boxShadow: "none" };
-
   const [chosenColour, setChosenColour] = useState("");
-
-  const textAreaRef = useRef<HTMLTextAreaElement>(null);
   const themedColour = colourmap[chosenColour];
 
-  useEffect(() => {
-    console.log(chosenColour);
-  }, [chosenColour]);
-
-  useEffect(() => {
-    // init height to 1 line
-    if (textAreaRef.current) {
-      textAreaRef.current.style.height = "0px";
-      textAreaRef.current.style.height = `${textAreaRef.current.scrollHeight}px`;
-    }
-  }, []);
-
   return (
-    <Flex width={"100%"} justify={"end"} align={"end"}>
+    <>
+      <BlockText
+        style={{ backgroundColor: themedColour }}
+        editMode={editMode}
+        id="block-callout"
+      ></BlockText>
       <Box position={"absolute"}>
         <Popover.Root>
           {editMode ? (
@@ -50,22 +38,7 @@ function BlockCallout({ editMode }: Props) {
           </Popover.Content>
         </Popover.Root>
       </Box>
-      <TextArea
-        id="block-callout"
-        ref={textAreaRef}
-        className="block"
-        style={{
-          ...boxShadow,
-          backgroundColor: themedColour,
-        }}
-        placeholder="Enter text here..."
-        onInput={(e) => {
-          const target = e.target as HTMLTextAreaElement;
-          target.style.height = "0px";
-          target.style.height = target.scrollHeight + "px";
-        }}
-      ></TextArea>
-    </Flex>
+    </>
   );
 }
 
