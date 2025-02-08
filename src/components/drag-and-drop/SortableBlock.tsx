@@ -10,6 +10,7 @@ interface Props {
   editMode: boolean;
   blocks: Array<{ id: number; type: number }>;
   setBlocks: (value: Array<{ id: number; type: number }>) => void;
+  overlay?: boolean;
 }
 export function SortableBlock({
   id,
@@ -27,33 +28,35 @@ export function SortableBlock({
       },
     });
 
-  if (transform) {
-    // Keeps things from stretching when dragging
-    transform.scaleY = 1;
-  }
   const style = {
     transform: CSS.Transform.toString(transform),
     transition,
   };
 
   function handleDelete(blockId: number) {
-    setBlocks(blocks.filter((block) => block.id !== blockId));
+    const newBlocks = blocks.filter((block) => block.id !== blockId);
+    setBlocks(newBlocks);
   }
 
   return (
     <>
       <Flex width={"100%"} gap={"1"} position={"relative"}>
         {editMode ? (
-          <Box // Drag box
+          <IconButton // Draggable button
+            type="button"
             ref={setNodeRef}
-            style={{ ...style, position: "absolute", left: "-35px" }}
             {...attributes}
             {...listeners}
+            variant="outline"
+            style={{
+              ...style,
+              position: "absolute",
+              left: "-35px",
+              cursor: "grab",
+            }}
           >
-            <IconButton variant="outline" style={{ cursor: "grab" }}>
-              <LineHeightIcon />
-            </IconButton>
-          </Box>
+            <LineHeightIcon />
+          </IconButton>
         ) : null}
 
         <Box // Content box
@@ -64,29 +67,26 @@ export function SortableBlock({
           <BlockContainer type={type} editMode={editMode} />
         </Box>
 
-        <Box // Delete box
-          ref={setNodeRef}
-          style={{
-            ...style,
-            position: "absolute",
-            top: "5px",
-            right: "-25px",
-          }}
-          {...attributes}
-        >
-          {editMode ? (
-            <IconButton
-              variant="ghost"
-              color="red"
-              style={{ cursor: "pointer" }}
-              onClick={() => {
-                handleDelete(id);
-              }}
-            >
-              <Cross1Icon />
-            </IconButton>
-          ) : null}
-        </Box>
+        {editMode ? (
+          <IconButton // Delete button
+            ref={setNodeRef}
+            variant="ghost"
+            color="red"
+            style={{
+              ...style,
+              position: "absolute",
+              top: "5px",
+              right: "-25px",
+              cursor: "pointer",
+            }}
+            {...attributes}
+            onClick={() => {
+              handleDelete(id);
+            }}
+          >
+            <Cross1Icon />
+          </IconButton>
+        ) : null}
       </Flex>
     </>
   );

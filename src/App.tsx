@@ -1,7 +1,7 @@
 import LearningCard from "./components/learning-card/LearningCard";
 import NavBar from "./components/nav/NavBar";
 import { useState } from "react";
-import { Flex, ContextMenu, Theme, Card } from "@radix-ui/themes";
+import { Flex, Theme, Card } from "@radix-ui/themes";
 
 import { useAppSelector } from "./app/hooks";
 
@@ -33,23 +33,15 @@ export default function MyApp() {
           setAccentColor={setAccentColor}
         />
       </Card>
-      <ContextMenu.Root modal={false}>
-        <ContextMenu.Trigger>
-          <Flex // Learning card container
-            direction={"row"}
-            justify={"center"}
-            width={"100%"}
-            minHeight={"110vh"}
-          >
-            <LearningCard editMode={editMode} />
-          </Flex>
-        </ContextMenu.Trigger>
-        <ContextMenu.Content size="1">
-          <ContextMenu.Item onClick={() => setEditMode(!editMode)}>
-            Edit mode
-          </ContextMenu.Item>
-        </ContextMenu.Content>
-      </ContextMenu.Root>
+
+      <Flex // Learning card container
+        direction={"row"}
+        justify={"center"}
+        width={"100%"}
+        minHeight={"110vh"}
+      >
+        <LearningCard editMode={editMode} />
+      </Flex>
     </Theme>
   );
 }

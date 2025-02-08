@@ -1,16 +1,18 @@
-import { Dispatch } from "react";
+import { Dispatch, useState } from "react";
 import {
   DndContext,
   KeyboardSensor,
   PointerSensor,
   useSensor,
   useSensors,
-  DragEndEvent,
   closestCorners,
+  DragOverEvent,
+  DragStartEvent,
+  UniqueIdentifier,
+  DragOverlay,
 } from "@dnd-kit/core";
 import {
   arrayMove,
-  verticalListSortingStrategy,
   SortableContext,
   sortableKeyboardCoordinates,
 } from "@dnd-kit/sortable";
@@ -18,6 +20,8 @@ import {
 import { Flex } from "@radix-ui/themes";
 import { SortableBlock } from "./SortableBlock";
 import { restrictToVerticalAxis } from "@dnd-kit/modifiers";
+import { useAppDispatch } from "../../app/hooks";
+import { dragFalse, dragTrue } from "../../features/dragging/draggingSlice";
 
 interface Props {
   blocks: Array<{ id: number; type: number }>;
@@ -26,6 +30,7 @@ interface Props {
 }
 
 function DraggableBlocks({ blocks, setBlocks, editMode }: Props) {
+  const dispatch = useAppDispatch();
   const sensors = useSensors(
     useSensor(PointerSensor),
     useSensor(KeyboardSensor, {
@@ -33,15 +38,19 @@ function DraggableBlocks({ blocks, setBlocks, editMode }: Props) {
     })
   );
 
+  const [activeId, setActiveId] = useState<null | UniqueIdentifier>(null);
+
   return (
     <DndContext
       sensors={sensors}
       collisionDetection={closestCorners}
+      onDragOver={handleDragOver}
+      onDragStart={handleDragStart}
       onDragEnd={handleDragEnd}
       modifiers={[restrictToVerticalAxis]}
     >
       <Flex direction={"column"} gap={"2"}>
-        <SortableContext items={blocks} strategy={verticalListSortingStrategy}>
+        <SortableContext items={blocks} strategy={() => null}>
           {blocks.map((block) => (
             <SortableBlock
               editMode={editMode}
@@ -53,25 +62,43 @@ function DraggableBlocks({ blocks, setBlocks, editMode }: Props) {
             />
           ))}
         </SortableContext>
+        <DragOverlay>
+          {/* {activeId ? (
+            <SortableBlock
+              id={activeId as number}
+              editMode={editMode}
+              type={0}
+              blocks={blocks}
+              setBlocks={setBlocks}
+            />
+          ) : null} */}
+        </DragOverlay>
       </Flex>
     </DndContext>
   );
 
-  function handleDragEnd(event: DragEndEvent) {
+  function handleDragStart(event: DragStartEvent) {
+    dispatch(dragTrue());
+    setActiveId(event.active.id);
+    console.log(activeId, "|", event.active.id);
+  }
+
+  function handleDragEnd() {
+    dispatch(dragFalse());
+    setActiveId(null);
+  }
+
+  function handleDragOver(event: DragOverEvent) {
     const { active, over } = event;
 
     if (over && active.id !== over.id) {
       setBlocks((blocks) => {
-        const oldIndex = blocks.findIndex(
-          (block) => block.id === Number(active.id)
-        );
-        const newIndex = blocks.findIndex(
-          (block) => block.id === Number(over.id)
-        );
-
+        const oldIndex = blocks.map((b) => b.id).indexOf(active.id as number);
+        const newIndex = blocks.map((b) => b.id).indexOf(over.id as number);
         return arrayMove(blocks, oldIndex, newIndex);
       });
     }
   }
 }
+
 export default DraggableBlocks;

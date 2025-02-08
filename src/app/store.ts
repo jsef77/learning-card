@@ -1,9 +1,11 @@
 import { configureStore } from '@reduxjs/toolkit'
 import themeReducer from '../features/theme/themeSlice'
+import draggingReducer from '../features/dragging/draggingSlice'
 
 const store = configureStore({
     reducer: {
-        theme: themeReducer
+        theme: themeReducer,
+        dragging: draggingReducer
     }
 })
 

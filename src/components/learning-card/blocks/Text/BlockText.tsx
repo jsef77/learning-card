@@ -19,6 +19,8 @@ function BlockText({ editMode, style, id }: Props) {
       value={value}
       onChange={setValue}
       style={{ ...style, boxShadow: editMode ? "var(--shadow-1)" : "none" }}
+      readOnly={!editMode}
+      placeholder="Enter text..."
     />
   );
 }

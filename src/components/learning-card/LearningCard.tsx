@@ -1,6 +1,6 @@
 import { Flex } from "@radix-ui/themes";
 import LearningCardHeader from "./LearningCardHeader";
-import DraggableBlocks from "../Dnd/DraggableBlocks";
+import DraggableBlocks from "../drag-and-drop/DraggableBlocks";
 import { useState } from "react";
 import AddBlockButton from "./AddBlockButton";
 
