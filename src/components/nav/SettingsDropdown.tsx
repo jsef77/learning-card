@@ -74,10 +74,10 @@ function SettingsDropdown({ setAccentColor }: Props) {
         </Button>
       </DropdownMenu.Trigger>
       <DropdownMenu.Content>
-        <DropdownMenu.Item shortcut="⌘ S">Save</DropdownMenu.Item>
+        {/* <DropdownMenu.Item shortcut="⌘ S">Save</DropdownMenu.Item>
         <DropdownMenu.Item shortcut="⌘ D">Duplicate</DropdownMenu.Item>
         <DropdownMenu.Separator />
-        <DropdownMenu.Item shortcut="⌘ N">Archive</DropdownMenu.Item>
+        <DropdownMenu.Item shortcut="⌘ N">Archive</DropdownMenu.Item> */}
 
         <DropdownMenu.Sub>
           <DropdownMenu.SubTrigger>Theme</DropdownMenu.SubTrigger>
@@ -94,13 +94,13 @@ function SettingsDropdown({ setAccentColor }: Props) {
           </DropdownMenu.SubContent>
         </DropdownMenu.Sub>
 
-        <DropdownMenu.Separator />
-        <DropdownMenu.Item>Share</DropdownMenu.Item>
+        {/* <DropdownMenu.Separator /> */}
+        {/* <DropdownMenu.Item>Share</DropdownMenu.Item>
         <DropdownMenu.Item>Add to favorites</DropdownMenu.Item>
         <DropdownMenu.Separator />
         <DropdownMenu.Item shortcut="⌘ ⌫" color="red" onClick={handleDelete}>
           Delete
-        </DropdownMenu.Item>
+        </DropdownMenu.Item> */}
       </DropdownMenu.Content>
     </DropdownMenu.Root>
   );
